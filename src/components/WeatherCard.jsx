@@ -5,7 +5,7 @@ import { ThermometerSun, ThermometerSnowflake } from 'lucide-react';
 
 export default function WeatherCard({ weatherData }) {
     return (
-      <div className="flex-1 max-w-5xl w-full mx-auto p-4">
+      <div className="flex-1 max-w-5xl w-full mx-auto p-4 justify-center bg-white shadow-lg rounded-lg mt-8 mb-8">
           {/* City and Date */}
           <div className="flex justify-between items-start mb-8">
             <div>
