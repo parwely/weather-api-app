@@ -74,14 +74,7 @@ weather-forecast-app/
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License**.  
-See the [LICENSE](./LICENSE) file for details.
-
----
-
-## 🙏 Acknowledgments
+## Documentation
 
 - [OpenWeatherMap](https://openweathermap.org/) for providing the weather data API
 - [TailwindCSS](https://tailwindcss.com/) for the utility-first CSS framework
