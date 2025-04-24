@@ -2,27 +2,22 @@ import { useState, useEffect } from "react";
 import SearchForm from "./components/SearchForm";
 import WeatherCard from "./components/WeatherCard";
 import useWeather from "./services/useWeather";
-import useDebounce from "./services/Debounce";
 
 export default function App() {
   const [location, setLocation] = useState("Berlin");
-  const debouncedLocation = useDebounce(location, 1000); // 1 second delay
-  const { weatherData, loading, error, fetchWeather } = useWeather(null); // Start with null
+  const { weatherData, loading, error, fetchWeather } = useWeather(null);
 
-  // Use effect to trigger search when debounced location changes
+  // Only fetch on initial load
   useEffect(() => {
-    if (debouncedLocation) {
-      fetchWeather(debouncedLocation);
-    }
-  }, [debouncedLocation, fetchWeather]);
+    fetchWeather("Berlin"); // Initial city
+  }, []);  // Empty dependency array means this runs once on mount
 
   const handleSearch = (searchLocation) => {
-    setLocation(searchLocation);
-    // No need to call fetchWeather here as it will be triggered by the effect
+    fetchWeather(searchLocation); // Only fetch when search button is clicked
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 flex flex-col items-center py-12 px-4 ">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 flex flex-col items-center py-12 px-4">
       {/* Header */}
       <header className="py-4 p-8 text-center border-b border-gray-200 bg-white mb-6 shadow-md rounded-2xl w-full max-w-5xl">
         <div className="flex items-center justify-center space-x-3 mb-2">
