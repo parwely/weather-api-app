@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchWeatherData } from '../services/weatherService';
+import WeatherService from './weatherService';
 
 export default function useWeather(initialLocation) {
   const [weatherData, setWeatherData] = useState(null);
@@ -7,14 +7,16 @@ export default function useWeather(initialLocation) {
   const [error, setError] = useState(null);
 
   const fetchWeather = async (location) => {
+    if (!location) return;
+    
     setLoading(true);
     setError(null);
-    
+
     try {
-      const data = await fetchWeatherData(location);
+      const data = await WeatherService.getWeatherData(location);
       setWeatherData(data);
     } catch (err) {
-      setError("Failed to fetch weather data. Please try again.");
+      setError('Failed to fetch weather data. Please try again.');
       console.error(err);
     } finally {
       setLoading(false);
@@ -22,7 +24,9 @@ export default function useWeather(initialLocation) {
   };
 
   useEffect(() => {
-    fetchWeather(initialLocation);
+    if (initialLocation) {
+      fetchWeather(initialLocation);
+    }
   }, [initialLocation]);
 
   return { weatherData, loading, error, fetchWeather };
