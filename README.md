@@ -1,37 +1,55 @@
-Weather Forecast App
-    A modern, responsive web application for checking weather forecasts for cities around the world. Built with React and OpenWeatherMap API.
+# 🌤️ Weather Forecast App
 
+A modern, responsive web application for checking weather forecasts for cities around the world.  
+Built with **React** and the **OpenWeatherMap API**.
 
-Technologies Used
-- React
-- Axios for API requests
-- TailwindCSS for styling
-- Vite for build tooling
-- OpenWeatherMap API
+---
 
-Prerequisites
-- Node.js (v14 or higher)
+## 🔧 Technologies Used
+
+- ⚛️ React
+- 🌐 Axios (for API requests)
+- 🎨 TailwindCSS (for styling)
+- ⚡ Vite (for build tooling)
+- 🌍 OpenWeatherMap API
+
+---
+
+## ✅ Prerequisites
+
+- [Node.js](https://nodejs.org/) (v14 or higher)
 - npm or yarn
-- OpenWeatherMap API key (get one for free at https://openweathermap.org/api)
+- [OpenWeatherMap API key](https://openweathermap.org/api)
 
+---
 
-Installation
-1. Clone the repository:
-    git clone https://github.com/yourusername/weather-forecast-app.git
-    cd weather-forecast-app
+## 🚀 Installation
 
-2. Install dependencies:
-    npm install
-    
-3. Environment setup:
-    - Copy .env.example to .env
-    - Replace your_api_key_here with your actual OpenWeatherMap API key
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/yourusername/weather-forecast-app.git
+   cd weather-forecast-app
+   ```
 
-4. Start the development server:
-    npm run dev
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-Project Structure
+3. **Environment setup**:
+   - Copy `.env.example` to `.env`
+   - Replace `your_api_key_here` with your actual **OpenWeatherMap API key**
 
+4. **Start the development server**:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 📁 Project Structure
+
+```
 weather-forecast-app/
 ├── public/
 │   └── weather-icon.svg
@@ -52,11 +70,19 @@ weather-forecast-app/
 ├── .env.example
 ├── .gitignore
 └── README.md
+```
 
-License
-    This project is licensed under the MIT License - see the LICENSE file for details.
+---
 
-Acknowledgments
-    - OpenWeatherMap for providing the weather data API
-    - TailwindCSS for the utility-first CSS framework
-    - React for the UI library
+## 📄 License
+
+This project is licensed under the **MIT License**.  
+See the [LICENSE](./LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- [OpenWeatherMap](https://openweathermap.org/) for providing the weather data API
+- [TailwindCSS](https://tailwindcss.com/) for the utility-first CSS framework
+- [React](https://reactjs.org/) for the powerful UI library
