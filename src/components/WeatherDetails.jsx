@@ -31,7 +31,7 @@ export default function WeatherDetails({ weatherData }) {
             <div>
               <p className="text-gray-500 text-sm">Sunrise</p>
               <p className="font-medium">
-                {formatTime(weatherData.sys.sunrise)}
+                {formatTime(weatherData.sys.sunrise, weatherData.timezone)}
               </p>
             </div>
           </div>
@@ -41,7 +41,7 @@ export default function WeatherDetails({ weatherData }) {
             <div>
               <p className="text-gray-500 text-sm">Sunset</p>
               <p className="font-medium">
-                {formatTime(weatherData.sys.sunset)}
+                {formatTime(weatherData.sys.sunset, weatherData.timezone)}
               </p>
             </div>
           </div>
