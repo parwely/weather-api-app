@@ -1,10 +1,11 @@
 import { formatDate } from '../services/dateUtils';
 import WeatherDetails from './WeatherDetails';
 import { ThermometerSun, ThermometerSnowflake, PlusCircle, Check } from 'lucide-react';
+import { forwardRef } from 'react';
 
-export default function WeatherCard({ weatherData, onAddCity, isSaved }) {
+const WeatherCard = forwardRef(function WeatherCard({ weatherData, onAddCity, isSaved }, ref) {
     return (
-      <div className="flex-1 max-w-5xl w-full mx-auto p-6 justify-center bg-white shadow-lg rounded-lg mt-8 mb-8 relative">
+      <div ref={ref} className="flex-1 max-w-5xl w-full mx-auto p-6 justify-center bg-white shadow-md rounded-md mb-8 relative flex flex-col">
           {/* Save City Button - Top Right Corner */}
           <button
             onClick={onAddCity}
@@ -47,7 +48,7 @@ export default function WeatherCard({ weatherData, onAddCity, isSaved }) {
           </div>
           
           {/* Min/Max temperatures - Switched order (Low then High) */}
-          <div className="flex justify-between items-center bg-gray-50 rounded-lg p-3 mb-8">
+          <div className="flex justify-between items-center bg-gray-50 rounded-md p-3 mb-8">
             <div className="flex items-center">
               <ThermometerSnowflake size={18} className="text-blue-500 mr-2" />
               <div>
@@ -65,7 +66,11 @@ export default function WeatherCard({ weatherData, onAddCity, isSaved }) {
           </div>
         
           {/* Details */}
-          <WeatherDetails weatherData={weatherData} />
+          <div>
+            <WeatherDetails weatherData={weatherData} />
+          </div>
       </div>
     );
-  }
+});
+
+export default WeatherCard;

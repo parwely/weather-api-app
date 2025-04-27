@@ -10,47 +10,50 @@ export default function WeatherDetails({ weatherData }) {
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-gray-50 p-4 rounded flex items-center">
-            <Droplets size={24} className="text-blue-500 mr-3" />
-            <div>
-              <p className="text-gray-500 text-sm">Humidity</p>
-              <p className="font-medium">{weatherData.main.humidity}%</p>
-            </div>
-          </div>
+          <WeatherDetailItem 
+            icon={<Droplets size={20} className="text-blue-500" />}
+            label="Humidity"
+            value={`${weatherData.main.humidity}%`}
+          />
 
-          <div className="bg-gray-50 p-4 rounded flex items-center">
-            <Wind size={24} className="text-blue-500 mr-3" />
-            <div>
-              <p className="text-gray-500 text-sm">Wind Speed</p>
-              <p className="font-medium">{weatherData.wind.speed} m/s</p>
-            </div>
-          </div>
+          <WeatherDetailItem 
+            icon={<Wind size={20} className="text-blue-500" />}
+            label="Wind Speed"
+            value={`${weatherData.wind.speed} m/s`}
+          />
 
-          <div className="bg-gray-50 p-4 rounded flex items-center">
-            <Sunrise size={24} className="text-yellow-500 mr-3" />
-            <div>
-              <p className="text-gray-500 text-sm">Sunrise</p>
-              <p className="font-medium">
-                {formatTime(weatherData.sys.sunrise, weatherData.timezone)}
-              </p>
-            </div>
-          </div>
+          <WeatherDetailItem 
+            icon={<Sunrise size={20} className="text-yellow-500" />}
+            label="Sunrise"
+            value={formatTime(weatherData.sys.sunrise, weatherData.timezone)}
+          />
 
-          <div className="bg-gray-50 p-4 rounded flex items-center">
-            <Sunset size={24} className="text-orange-500 mr-3" />
-            <div>
-              <p className="text-gray-500 text-sm">Sunset</p>
-              <p className="font-medium">
-                {formatTime(weatherData.sys.sunset, weatherData.timezone)}
-              </p>
-            </div>
-          </div>
+          <WeatherDetailItem 
+            icon={<Sunset size={20} className="text-orange-500" />}
+            label="Sunset"
+            value={formatTime(weatherData.sys.sunset, weatherData.timezone)}
+          />
         </div>
       </div>
 
       <p className="text-xs text-gray-500 text-center mt-8">
         Last updated: {new Date().toLocaleTimeString()}
       </p>
+    </div>
+  );
+}
+
+// Helper component for consistent detail items
+function WeatherDetailItem({ icon, label, value }) {
+  return (
+    <div className="bg-gray-50 p-4 rounded-md flex items-center">
+      <div className="w-8 h-8 flex items-center justify-center mr-3">
+        {icon}
+      </div>
+      <div>
+        <p className="text-gray-500 text-sm">{label}</p>
+        <p className="font-medium">{value}</p>
+      </div>
     </div>
   );
 }

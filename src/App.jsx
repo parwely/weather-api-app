@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SearchForm from "./components/SearchForm";
 import WeatherCard from "./components/WeatherCard";
 import SavedCities from "./components/SavedCities";
@@ -8,6 +8,8 @@ export default function App() {
   const [location, setLocation] = useState("Berlin");
   const { weatherData, loading, error, fetchWeather } = useWeather(null);
   const [savedCities, setSavedCities] = useState([]);
+  const [cardHeight, setCardHeight] = useState(0);
+  const weatherCardRef = useRef(null);
 
   // Load saved cities from localStorage on initial load
   useEffect(() => {
@@ -22,6 +24,14 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("savedCities", JSON.stringify(savedCities));
   }, [savedCities]);
+
+  // Update card height whenever weather data changes
+  useEffect(() => {
+    if (weatherCardRef.current) {
+      const height = weatherCardRef.current.offsetHeight;
+      setCardHeight(height);
+    }
+  }, [weatherData]);
 
   const handleSearch = (searchLocation) => {
     fetchWeather(searchLocation);
@@ -45,7 +55,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 flex flex-col items-center py-12 px-4">
       {/* Header */}
-      <header className="py-4 p-8 text-center border-b border-gray-200 bg-white mb-6 shadow-md rounded-md w-full max-w-5xl">
+      <header className="py-4 p-8 text-center border-b border-gray-200 bg-white mb-8 shadow-md rounded-md w-full max-w-5xl">
         <div className="flex items-center justify-center space-x-3 mb-2">
           <svg
             className="w-8 h-8"
@@ -79,33 +89,34 @@ export default function App() {
 
       {/* Error Message */}
       {error && (
-        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-md">
+        <div className="bg-white border-l-4 border-red-500 text-red-700 p-4 mb-8 rounded-md shadow-md">
           <p>{error}</p>
         </div>
       )}
 
-      <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Current Weather Card */}
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-3">
           {weatherData && (
-            <>
-              <WeatherCard
-                weatherData={weatherData}
-                onAddCity={addCityToList}
-                isSaved={savedCities.some(city => city.id === weatherData.id)}
-              />
-            </>
+            <WeatherCard
+              weatherData={weatherData}
+              onAddCity={addCityToList}
+              isSaved={savedCities.some(city => city.id === weatherData.id)}
+              ref={weatherCardRef}
+            />
           )}
         </div>
         
         {/* Saved Cities List */}
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-2">
           <SavedCities 
             cities={savedCities} 
             onDeleteCity={deleteCity} 
+            height={cardHeight}
           />
         </div>
       </div>
     </div>
   );
 }
+
