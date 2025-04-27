@@ -1,5 +1,4 @@
 import { formatDate } from '../services/dateUtils';
-import WeatherIcon from './WeatherIcon';
 import WeatherDetails from './WeatherDetails';
 import { ThermometerSun, ThermometerSnowflake } from 'lucide-react';
 
@@ -14,7 +13,11 @@ export default function WeatherCard({ weatherData }) {
               <p className="text-gray-500">{weatherData.weather[0].description}</p>
             </div>
             <div className="flex items-center">
-              {WeatherIcon(weatherData.weather[0].main)}
+                <img
+                    src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                    alt={weatherData.weather[0].description}
+                    className="w-16 h-16 my-2"
+                />
             </div>
           </div>
           

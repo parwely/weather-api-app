@@ -57,8 +57,7 @@ weather-forecast-app/
 │   ├── components/
 │   │   ├── SearchForm.jsx
 │   │   ├── WeatherCard.jsx
-│   │   ├── WeatherDetails.jsx
-│   │   └── WeatherIcon.jsx
+│   │   └── WeatherDetails.jsx
 │   ├── services/
 │   │   ├── dateUtils.js
 │   │   ├── useDebounce.js
