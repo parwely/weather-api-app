@@ -27,11 +27,11 @@ export default function WeatherCard({ weatherData }) {
             <div className="text-right">
               <div className="flex items-center justify-end mb-1">
                 <ThermometerSun size={16} className="mr-1" />
-                <p className="text-sm">High: {Math.round(weatherData.main.temp + 2)}°</p>
+                <p className="text-sm">Current Maximum: {Math.round(weatherData.main.temp_max)}°</p>
               </div>
               <div className="flex items-center justify-end">
                 <ThermometerSnowflake size={16} className="mr-1" />
-                <p className="text-sm">Low: {Math.round(weatherData.main.temp - 2)}°</p>
+                <p className="text-sm">Current Minimum: {Math.round(weatherData.main.temp_min)}°</p>
               </div>
             </div>
           </div>
