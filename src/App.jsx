@@ -1,19 +1,45 @@
 import { useState, useEffect } from "react";
 import SearchForm from "./components/SearchForm";
 import WeatherCard from "./components/WeatherCard";
+import SavedCities from "./components/SavedCities";
 import useWeather from "./services/useWeather";
 
 export default function App() {
   const [location, setLocation] = useState("Berlin");
   const { weatherData, loading, error, fetchWeather } = useWeather(null);
+  const [savedCities, setSavedCities] = useState([]);
 
-  // Only fetch on initial load
+  // Load saved cities from localStorage on initial load
   useEffect(() => {
+    const saved = localStorage.getItem("savedCities");
+    if (saved) {
+      setSavedCities(JSON.parse(saved));
+    }
     fetchWeather("Berlin"); // Initial city
-  }, []);  // Empty dependency array means this runs once on mount
+  }, []);
+
+  // Save to localStorage whenever savedCities changes
+  useEffect(() => {
+    localStorage.setItem("savedCities", JSON.stringify(savedCities));
+  }, [savedCities]);
 
   const handleSearch = (searchLocation) => {
-    fetchWeather(searchLocation); // Only fetch when search button is clicked
+    fetchWeather(searchLocation);
+  };
+
+  const addCityToList = () => {
+    if (!weatherData) return;
+    
+    // Check if city already exists in the list
+    const cityExists = savedCities.some(city => city.id === weatherData.id);
+    
+    if (!cityExists) {
+      setSavedCities(prev => [weatherData, ...prev]);
+    }
+  };
+
+  const deleteCity = (cityId) => {
+    setSavedCities(prev => prev.filter(city => city.id !== cityId));
   };
 
   return (
@@ -58,8 +84,29 @@ export default function App() {
         </div>
       )}
 
-      {/* Weather Card */}
-      {weatherData && <WeatherCard weatherData={weatherData} />}
+      <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Current Weather Card */}
+        <div className="lg:col-span-2">
+          {weatherData && (
+            <>
+              {/*<h2 className="text-xl font-semibold mb-4">Current Weather</h2>*/}
+              <WeatherCard
+                weatherData={weatherData}
+                onAddCity={addCityToList}
+                isSaved={savedCities.some(city => city.id === weatherData.id)}
+              />
+            </>
+          )}
+        </div>
+        
+        {/* Saved Cities List */}
+        <div className="lg:col-span-1">
+          <SavedCities 
+            cities={savedCities} 
+            onDeleteCity={deleteCity} 
+          />
+        </div>
+      </div>
     </div>
   );
 }
