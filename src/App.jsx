@@ -19,7 +19,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100 flex flex-col items-center py-12 px-4">
       {/* Header */}
-      <header className="py-4 p-8 text-center border-b border-gray-200 bg-white mb-6 shadow-md rounded-2xl w-full max-w-5xl">
+      <header className="py-4 p-8 text-center border-b border-gray-200 bg-white mb-6 shadow-md rounded-md w-full max-w-5xl">
         <div className="flex items-center justify-center space-x-3 mb-2">
           <svg
             className="w-8 h-8"
@@ -53,7 +53,7 @@ export default function App() {
 
       {/* Error Message */}
       {error && (
-        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded">
+        <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-md">
           <p>{error}</p>
         </div>
       )}
