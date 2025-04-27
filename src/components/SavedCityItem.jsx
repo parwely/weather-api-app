@@ -2,7 +2,7 @@ import { Trash2 } from "lucide-react";
 
 export default function SavedCityItem({ weatherData, onDelete }) {
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center mb-3 hover:bg-blue-50 transition-colors">
+    <div className="bg-gray-50 p-4 rounded flex justify-between items-center hover:bg-blue-50 transition-colors">
       <div className="flex items-center min-w-0 flex-1 mr-4">
         <img
           src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}

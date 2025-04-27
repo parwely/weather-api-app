@@ -3,7 +3,7 @@ import { formatTime } from "../services/dateUtils";
 
 export default function WeatherDetails({ weatherData }) {
   return (
-    <div className="p-6">
+    <div>
       <div>
         <h3 className="text-xl font-semibold text-gray-800 mb-4">
           Weather Details
