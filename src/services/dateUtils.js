@@ -6,9 +6,9 @@ export function formatDate(date) {
     });
   }
 
-  export function formatTime(timestamp, timezoneOffset) {
+  export function formatTime(timestamp, timezoneOffsetSeconds) {
       // Apply the location's timezone offset
-      const locationTime = new Date((timestamp + timezoneOffset) * 1000);
+      const locationTime = new Date((timestamp + timezoneOffsetSeconds) * 1000);
       // Format the time
       return locationTime.toLocaleTimeString('en-US', {
         hour: '2-digit',
