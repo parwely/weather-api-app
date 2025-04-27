@@ -84,12 +84,11 @@ export default function App() {
         </div>
       )}
 
-      <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Current Weather Card */}
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-1">
           {weatherData && (
             <>
-              {/*<h2 className="text-xl font-semibold mb-4">Current Weather</h2>*/}
               <WeatherCard
                 weatherData={weatherData}
                 onAddCity={addCityToList}
