@@ -1,43 +1,76 @@
 import { formatDate } from '../services/dateUtils';
-import WeatherIcon from './WeatherIcon';
 import WeatherDetails from './WeatherDetails';
-import { ThermometerSun, ThermometerSnowflake } from 'lucide-react';
+import { ThermometerSun, ThermometerSnowflake, PlusCircle, Check } from 'lucide-react';
+import { forwardRef } from 'react';
 
-export default function WeatherCard({ weatherData }) {
+const WeatherCard = forwardRef(function WeatherCard({ weatherData, onAddCity, isSaved }, ref) {
     return (
-      <div className="flex-1 max-w-5xl w-full mx-auto p-4 justify-center bg-white shadow-lg rounded-lg mt-8 mb-8">
-          {/* City and Date */}
-          <div className="flex justify-between items-start mb-8">
-            <div>
-              <h2 className="text-4xl font-bold text-gray-800">{weatherData.name}</h2>
-              <p className="text-lg opacity-90 mt-1">{formatDate(new Date())}</p>
-              <p className="text-gray-500">{weatherData.weather[0].description}</p>
-            </div>
+      <div ref={ref} className="flex-1 max-w-5xl w-full mx-auto p-6 justify-center bg-white shadow-md rounded-md mb-8 relative flex flex-col">
+          {/* Save City Button - Top Right Corner */}
+          <button
+            onClick={onAddCity}
+            className={`absolute top-4 right-4 p-2 rounded-full ${
+              isSaved 
+                ? 'bg-green-100 text-green-600 cursor-default' 
+                : 'bg-blue-500 text-white hover:bg-blue-600'
+            } transition-colors`}
+            disabled={isSaved}
+            title={isSaved ? 'City already saved' : 'Save city to list'}
+          >
+            {isSaved ? <Check size={20} /> : <PlusCircle size={20} />}
+          </button>
+
+          {/* City name and date */}
+          <div className="mb-6">
+            <h2 className="text-3xl font-bold text-gray-800">{weatherData.name}</h2>
+            <p className="text-sm text-gray-500 mt-1">{formatDate(new Date())}</p>
+          </div>
+          
+          {/* Primary weather information - unified section */}
+          <div className="flex items-center justify-between mb-8">
+            {/* Left side: Icon and condition */}
             <div className="flex items-center">
-              {WeatherIcon(weatherData.weather[0].main)}
+              <img
+                src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                alt={weatherData.weather[0].description}
+                className="w-24 h-24 mr-2"
+              />
+              <div>
+                <p className="font-medium text-gray-700 capitalize">{weatherData.weather[0].description}</p>
+                <p className="text-gray-500">Feels like: {Math.round(weatherData.main.feels_like)}°</p>
+              </div>
+            </div>
+            
+            {/* Right side: Temperature */}
+            <div className="text-right">
+              <p className="text-6xl font-light text-gray-800">{Math.round(weatherData.main.temp)}°</p>
             </div>
           </div>
           
-          {/* Main Temperature */}
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <p className="text-7xl font-light">{Math.round(weatherData.main.temp)}°</p>
-              <p className="text-gray-500">Feels like: {Math.round(weatherData.main.feels_like)}°</p>
-            </div>
-            <div className="text-right">
-              <div className="flex items-center justify-end mb-1">
-                <ThermometerSun size={16} className="mr-1" />
-                <p className="text-sm">High: {Math.round(weatherData.main.temp + 2)}°</p>
+          {/* Min/Max temperatures - Switched order (Low then High) */}
+          <div className="flex justify-between items-center bg-gray-50 rounded-md p-3 mb-8">
+            <div className="flex items-center">
+              <ThermometerSnowflake size={18} className="text-blue-500 mr-2" />
+              <div>
+                <p className="text-xs text-gray-500">LOW</p>
+                <p className="font-medium">{Math.round(weatherData.main.temp_min)}°</p>
               </div>
-              <div className="flex items-center justify-end">
-                <ThermometerSnowflake size={16} className="mr-1" />
-                <p className="text-sm">Low: {Math.round(weatherData.main.temp - 2)}°</p>
+            </div>
+            <div className="flex items-center">
+              <ThermometerSun size={18} className="text-orange-500 mr-2" />
+              <div>
+                <p className="text-xs text-gray-500">HIGH</p>
+                <p className="font-medium">{Math.round(weatherData.main.temp_max)}°</p>
               </div>
             </div>
           </div>
         
-        {/* Details */}
-        <WeatherDetails weatherData={weatherData} />
+          {/* Details */}
+          <div>
+            <WeatherDetails weatherData={weatherData} />
+          </div>
       </div>
     );
-  }
+});
+
+export default WeatherCard;
