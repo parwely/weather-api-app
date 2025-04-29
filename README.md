@@ -27,7 +27,7 @@ Built with **React** and the **OpenWeatherMap API**.
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/weather-forecast-app.git
+   git clone https://github.com/parwely/weather-api-app.git
    cd weather-forecast-app
    ```
 
@@ -47,34 +47,9 @@ Built with **React** and the **OpenWeatherMap API**.
 
 ---
 
-## 📁 Project Structure
-
-```
-weather-forecast-app/
-├── public/
-│   └── weather-icon.svg
-├── src/
-│   ├── components/
-│   │   ├── SearchForm.jsx
-│   │   ├── WeatherCard.jsx
-│   │   └── WeatherDetails.jsx
-│   ├── services/
-│   │   ├── dateUtils.js
-│   │   ├── useDebounce.js
-│   │   ├── useWeather.js
-│   │   └── weatherService.js
-│   ├── App.jsx
-│   └── main.jsx
-├── .env
-├── .env.example
-├── .gitignore
-└── README.md
-```
-
----
-
 ## Documentation
 
 - [OpenWeatherMap](https://openweathermap.org/) for providing the weather data API
 - [TailwindCSS](https://tailwindcss.com/) for the utility-first CSS framework
 - [React](https://reactjs.org/) for the powerful UI library
+- [Devenv](https://devenv.sh/) for reproducible development environments
