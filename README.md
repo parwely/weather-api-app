@@ -1,25 +1,32 @@
-# 🌤️ Weather Forecast App
+# ☀️ Weather API App
 
-A modern, responsive web application for checking weather forecasts for cities around the world.  
-Built with **React** and the **OpenWeatherMap API**.
+Eine einfache, funktionale Wetter-Anwendung, die Wetterdaten über eine öffentliche REST-API  (z. B. OpenWeatherMap) abruft und demonstriert grundlegende Prinzipien der Webservice-Nutzung, JSON-Parsing und Fehlerbehandlung in JavaScript.
 
----
+## 🔧 Funktionen
 
-## 🔧 Technologies Used
+- Abfrage aktueller Wetterdaten für jede beliebige Stadt
+- Einfache Konsolenbedienung
+- Ausgabe von Temperatur, Wetterbeschreibung, Luftfeuchtigkeit etc.
+- Fehlerbehandlung bei ungültigen Eingaben oder Netzwerkproblemen
+- JSON-Verarbeitung mit org.json (oder kompatibler Bibliothek)
 
-- ⚛️ React
-- 🌐 Axios (for API requests)
-- 🎨 TailwindCSS (for styling)
-- ⚡ Vite (for build tooling)
-- 🌍 OpenWeatherMap API
+## 💻 Technologien
 
----
+- Node.js
+- Axios (for API requests)
+- TailwindCSS (for styling)
+- React + Vite (for build tooling)
+- OpenWeatherMap API
+- RESTful API-Zugriff mit `HttpURLConnection`
+- JSON-Verarbeitung mit `org.json`
+- Externe API: OpenWeatherMap (https://openweathermap.org/)
 
 ## ✅ Prerequisites
 
 - [Node.js](https://nodejs.org/) (v14 or higher)
 - npm or yarn
-- [OpenWeatherMap API key](https://openweathermap.org/api)
+- API-Schlüssel für OpenWeatherMap (kostenlos erhältlich unter https://openweathermap.org/api)
+
 
 ---
 
@@ -45,11 +52,3 @@ Built with **React** and the **OpenWeatherMap API**.
    npm run dev
    ```
 
----
-
-## Documentation
-
-- [OpenWeatherMap](https://openweathermap.org/) for providing the weather data API
-- [TailwindCSS](https://tailwindcss.com/) for the utility-first CSS framework
-- [React](https://reactjs.org/) for the powerful UI library
-- [Devenv](https://devenv.sh/) for reproducible development environments
